@@ -1,0 +1,19 @@
+services:
+  pizzaa:
+    build:
+      context: .
+      dockerfile: main/Dockerfile
+    container_name: pizzaa-app
+    ports:
+      - "8000:8000"
+    volumes:
+      # Named volume for database persistence
+      - pizzaa-db:/app/data
+    environment:
+      - DB_PATH=/app/data/pizza_store.sqlite
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+volumes:
+  pizzaa-db:
+    driver: local

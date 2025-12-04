@@ -1,0 +1,4 @@
+fastapi==0.123.4
+uvicorn[standard]==0.38.0
+sqlitedict==2.1.0
+pydantic==2.12.5

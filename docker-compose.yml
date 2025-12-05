@@ -7,7 +7,6 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      # Named volume for database persistence
       - pizzaa-db:/app/data
     environment:
       - DB_PATH=/app/data/pizza_store.sqlite

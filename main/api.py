@@ -1,4 +1,3 @@
-"""FastAPI application and route handlers"""
 from fastapi import FastAPI, Depends, HTTPException, status
 from sqlitedict import SqliteDict
 from typing import List
@@ -7,7 +6,7 @@ from main.models import Pizza, OrderItem, PriceUpdate
 from main.database import get_db, get_menu, initialize_database
 from main.config import DB_KEY
 
-# Initialize database on import
+
 initialize_database()
 
 app = FastAPI(
@@ -29,7 +28,6 @@ def root():
 
 @app.get("/pizza_names")
 def pizza_names(db: SqliteDict = Depends(get_db)):
-    """Get list of all pizza names"""
     menu = get_menu(db)
     names = [pizza["name"] for pizza in menu]
     return {"pizza_list": names}
@@ -37,7 +35,6 @@ def pizza_names(db: SqliteDict = Depends(get_db)):
 
 @app.get("/pizza_details")
 def detail_of_pizza(id: int, db: SqliteDict = Depends(get_db)):
-    """Get details of a specific pizza by ID"""
     pizza_menu = get_menu(db)
     for pizza in pizza_menu:
         if pizza["id"] == id:
@@ -47,7 +44,6 @@ def detail_of_pizza(id: int, db: SqliteDict = Depends(get_db)):
 
 @app.post("/order")
 def place_order(order_items: List[OrderItem], db: SqliteDict = Depends(get_db)):
-    """Place an order with multiple pizza items"""
     total_price = 0.0
     not_found_id = []
     pizza_menu = get_menu(db)
@@ -75,7 +71,6 @@ def place_order(order_items: List[OrderItem], db: SqliteDict = Depends(get_db)):
 
 @app.put("/add_pizza")
 def add_new_pizza(pizza: Pizza, db: SqliteDict = Depends(get_db)):
-    """Add a new pizza to the menu"""
     pizza_menu = get_menu(db)
     
     if pizza_menu:
@@ -93,7 +88,6 @@ def add_new_pizza(pizza: Pizza, db: SqliteDict = Depends(get_db)):
 
 @app.delete("/remove_pizza")
 def remove_pizza(pizza_id: int, db: SqliteDict = Depends(get_db)):
-    """Remove a pizza from the menu"""
     pizza_menu = get_menu(db)
     
     if pizza_menu:
@@ -115,7 +109,6 @@ def remove_pizza(pizza_id: int, db: SqliteDict = Depends(get_db)):
 
 @app.patch("/update_price")
 def update_pizza_price(data: PriceUpdate, db: SqliteDict = Depends(get_db)):
-    """Update the price of a pizza"""
     pizza_menu = get_menu(db)
     
     if pizza_menu:

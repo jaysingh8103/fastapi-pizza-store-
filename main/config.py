@@ -1,8 +1,6 @@
-"""Configuration settings for the Pizzaa application"""
 import os
 from pathlib import Path
 
-# Base directory
 BASE_DIR = Path(__file__).parent.parent
 
 # Database configuration - use environment variable or default

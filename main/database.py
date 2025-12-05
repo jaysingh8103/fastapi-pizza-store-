@@ -1,4 +1,3 @@
-"""Database operations and initialization"""
 from sqlitedict import SqliteDict
 from main.config import DB_PATH, DB_KEY
 from pathlib import Path
@@ -27,11 +26,8 @@ INITIAL_PIZZA_MENU = [
     {"id": 10, "name": "Buffalo Chicken", "size": "Medium", "price": 13.99,
      "toppings": ["Buffalo sauce", "mozzarella", "grilled chicken", "red onions", "blue cheese"]},
 ]
-
-
 def get_db():
-    """Dependency function to get database connection"""
-    # Ensure parent directory exists
+    
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     
     db = SqliteDict(str(DB_PATH), autocommit=True)
@@ -42,7 +38,6 @@ def get_db():
 
 
 def get_menu(db: SqliteDict):
-    """Get pizza menu from database"""
     if DB_KEY not in db:
         from fastapi import HTTPException
         raise HTTPException(
@@ -53,8 +48,6 @@ def get_menu(db: SqliteDict):
 
 
 def initialize_database():
-    """Initialize database with initial pizza menu data"""
-    # Ensure parent directory exists
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     
     if not DB_PATH.exists():
@@ -62,7 +55,6 @@ def initialize_database():
             db[DB_KEY] = INITIAL_PIZZA_MENU
         print(f"Database initialized at {DB_PATH}")
     else:
-        # Ensure menu exists
         with SqliteDict(str(DB_PATH), autocommit=True) as db:
             if DB_KEY not in db:
                 db[DB_KEY] = INITIAL_PIZZA_MENU

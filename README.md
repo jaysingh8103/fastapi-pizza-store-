@@ -1,4 +1,4 @@
-# 🍕 Pizza Store API
+# 🍕 Pizza Store API (FastApi and SQLITEDIST )
 
 A small, production-ready REST API for managing a pizza store built with FastAPI, Pydantic and SqliteDict. Containerized with Docker + Docker Compose for easy deployment.
 

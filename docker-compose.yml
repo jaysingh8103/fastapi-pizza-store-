@@ -2,7 +2,7 @@ services:
   pizzaa:
     build:
       context: .
-      dockerfile: main/Dockerfile
+      dockerfile: Dockerfile
     container_name: pizzaa-app
     ports:
       - "8000:8000"

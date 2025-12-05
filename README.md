@@ -166,7 +166,7 @@ Recommended: Docker Compose.
 
 Direct Docker usage:
 ```
-docker build -f main/Dockerfile -t pizzaa-app .
+docker build -f Dockerfile -t pizzaa-app .
 docker run -d --name pizzaa-app -p 8000:8000 -v pizzaa-db:/app/data -e DB_PATH=/app/data/pizza_store.sqlite pizzaa-app
 ```
 

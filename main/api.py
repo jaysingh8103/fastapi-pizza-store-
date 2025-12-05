@@ -18,10 +18,8 @@ app = FastAPI(
 
 @app.get("/")
 def root():
-    """Root endpoint"""
     return {
-        "message": "Welcome to Pizza Store API",
-        "version": "1.0.0",
+        "message": "Pizza Store API",
         "docs": "/docs"
     }
 
